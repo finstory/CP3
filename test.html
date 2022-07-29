@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        const listOne = [1, 2, 3, 4, 5];
+
+        // let listTwo = [1,2,3,4,5];
+
+        // Se envian por referencia.
+        function getMeArray(array) {
+            //apuntan al mismo valor.
+            return listOne;
+        }
+
+
+        const listBefore = getMeArray(listOne);
+
+        //Le cambio la primera posición y vemos que pasa...
+        // listBefore[0] = 99;
+
+        const listAfter = getMeArray(listOne);
+
+        // Con esto probamos si son identicas.
+         console.log(JSON.stringify(listBefore) === JSON.stringify(listAfter));
+        // true
+
+       // !!!!!!!!!! consologeando nos queda: 
+       //  listBefore[0] = 99 y listAfter[0] = 99 .
+
+        //Es decir, como listBefore y listAfter son iguales, los 2 se modifican!.
+
+
+        //Esta función no retornara un Clon del array que reciba.
+        function getMeArrayCopy(array) {
+            return Object.assign([], array);
+        }
+
+        const listBefore2 = getMeArrayCopy(listOne);
+
+        listBefore2[0] = 99;
+
+        const listAfter2 = getMeArrayCopy(listOne);
+
+        // Con esto probamos si son identicas.
+        console.log(JSON.stringify(listBefore2) === JSON.stringify(listAfter2));
+
+       // !!!!!!!!!! consologeando nos queda: 
+       //  listBefore2[0] = 99 y listAfter2[0] = 1 .
+
+        //Es decir, como CLONAMOS ahora los puntermos de memoria de cada array son distintos.
+
+
+    </script>
+</body>
+
+</html>
